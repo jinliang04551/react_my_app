@@ -1,6 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { CLASS } from 'postcss-selector-parser';
+import Reservation from './Reservation'
+import Calculator from './Calculator'
 
 // function App() {
 //   return (
@@ -41,6 +44,10 @@ function App() {
       <Page />
       <NumberList numbers ={numbers}/>
       <Blog posts={posts}/>
+      <NameForm />
+      <FlavorForm />
+      <Reservation />
+      <Calculator />
       </div>
   );
 }
@@ -319,3 +326,75 @@ const posts = [
   {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
   {id: 2, title: 'Installation', content: 'You can install React from npm.'}
 ];
+
+class NameForm extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {value:''};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event){
+    this.setState({value:event.target.value.toUpperCase()});
+  }
+
+  handleSubmit(event){
+    alert('提交的名字:'+this.state.value);
+    event.preventDefault();
+  }
+  
+  render (){
+    return (
+       <form onSubmit= {this.handleSubmit}>
+          <label >
+            名字:
+            <input type="text" value={this.state.value} onChange={this.handleChange}/>
+          </label>
+            <input type="submit" value="提交"/>
+       </form>
+    );
+  }
+}
+
+class FlavorForm extends React.Component {
+  constructor(props){
+     super(props);
+     this.state = {value:'cocount'};
+
+     this.handleChange = this.handleChange.bind(this);
+     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value:event.target.value});
+  }
+
+  handleSubmit(event){
+    alert('你喜欢的风味是:'+ this.state.value);
+    event.preventDefault();
+  }
+
+  render(){
+     return (
+         <form onSubmit={this.handleSubmit}>
+             <label>
+               选择你喜欢的风味:
+               <select value={this.state.value} onChange={this.handleChange}>
+                  <option value="grapefruit">柚子</option>
+                  <option value="lime">酸橙</option>
+                  <option value="cocount">椰子</option>
+                  <option value="mango">芒果</option>
+               </select>
+             </label>
+             <input type="submit" value="提交"/>
+         </form>
+     );
+  }
+}
+
+
+
+
+
+
