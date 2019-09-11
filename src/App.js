@@ -4,6 +4,7 @@ import './App.css';
 import { CLASS } from 'postcss-selector-parser';
 import Reservation from './Reservation'
 import Calculator from './Calculator'
+import SignUpDialog from './Dialog'
 
 // function App() {
 //   return (
@@ -48,6 +49,8 @@ function App() {
       <FlavorForm />
       <Reservation />
       <Calculator />
+      <SignUpDialog />
+  
       </div>
   );
 }
@@ -396,5 +399,16 @@ class FlavorForm extends React.Component {
 
 
 
-
+function SplitPane(props) {
+  return(
+     <div className="SplitPane">
+      <div className="SplitPane-left">
+        {props.left}
+      </div>
+      <div className="SplitPane-right">
+        {props.right}
+      </div>
+     </div>
+  );
+}
 
